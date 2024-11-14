@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkinson Disease Detection</title>
+    <!-- Include Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white text-center">
+                <h2>Parkinson Disease Detection</h2>
+            </div>
+            <div class="card-body">
+                <form action="/predict" method="post">
+                    <p class="text-muted text-center mb-4">Enter patient details for prediction:</p>
+                    <!-- Dynamically generate input fields for required features -->
+                    {% for feature in feature_names %}
+                    <div class="mb-3">
+                        <label for="{{ feature }}" class="form-label">{{ feature }}</label>
+                        <input type="text" class="form-control" id="{{ feature }}" name="{{ feature }}" placeholder="Enter {{ feature }}">
+                    </div>
+                    {% endfor %}
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-block">Predict</button>
+                    </div>
+                </form>
+                <!-- Display result -->
+                {% if prediction_text %}
+                <div class="mt-4 alert {{ 'alert-success' if success else 'alert-danger' }}">
+                    {{ prediction_text }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

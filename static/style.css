@@ -1,0 +1,16 @@
+body {
+    background: linear-gradient(to bottom, #e3f2fd, #f9fbe7);
+    font-family: 'Arial', sans-serif;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0;
+}
+
+button {
+    font-size: 1.2rem;
+}
